@@ -1,0 +1,4 @@
+chroma/*
+data/*
+node_modules/*
+.env

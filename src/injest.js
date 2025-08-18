@@ -1,17 +1,10 @@
-import { loadPDF } from './data-loader/pdfReader.js';
+import { readFile } from './data-loader/readFile.js';
 import { chunkText } from './chunk-creater/chunker.js';
-import { pipeline } from '@xenova/transformers';
-import { getOrCreateCollection } from "./DB/connection.js"
-import dotenv from "dotenv";
-dotenv.config();
 
-async function injestData() {
-  const { DB_CONNECTION, COLLECTION_NAME } = process.env;
-  const rawText = await loadPDF("../data/SubhashResumeWork.pdf");
+export async function injestData(config, file) {
+  const { embedder, collection } = config;
+  const rawText = await readFile(file);
   const chunks = await chunkText(rawText);
-
-  const embedder = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
-  const collection = getOrCreateCollection(COLLECTION_NAME, DB_CONNECTION);
 
   for (let i = 0; i < chunks.length; i++) {
     const emb = await embedder(chunks[i], { pooling: 'mean', normalize: true });
@@ -21,6 +14,4 @@ async function injestData() {
       documents: [chunks[i]],
     });
   }
-}
-
-injestData();
+};

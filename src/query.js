@@ -4,7 +4,7 @@ export async function askQuestion(config, question) {
 
   const result = await collection.query({
     queryEmbeddings: [Array.from(embeddedQuery.data)],
-    nResults: 3,                          // top 3 most similar docs
+    nResults: 5,                          // top 5 most similar docs
   });
 
   const context = result.documents[0].join("\n");

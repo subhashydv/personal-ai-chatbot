@@ -1,4 +1,5 @@
-export async function askQuestion(collection, embedder, openai, question) {
+export async function askQuestion(config, question) {
+  const { openai, embedder, collection } = config;
   const embeddedQuery = await embedder(question, { pooling: 'mean', normalize: true });
 
   const result = await collection.query({

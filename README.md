@@ -66,11 +66,11 @@ npm start
 Use Postman or curl to test the endpoints:
 - Upload a file:
   ```bash
-  curl -X POST -F "file=@path/to/your/file.pdf" http://localhost:3000/upload
+  curl -X POST -F "file=@path/to/your/file.pdf" http://localhost:8181/upload
   ```
 - Ask a question:
   ```bash
-    curl -X POST -H "Content-Type: application/json" -d '{"question": "Your question here"}' http://localhost:3000/ask
+    curl -X POST -H "Content-Type: application/json" -d '{"question": "Your question here"}' http://localhost:8181/ask
     ```
   
 - You should get a response with the answer based on your uploaded content.

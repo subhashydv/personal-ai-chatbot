@@ -2,6 +2,8 @@
 
 An AI agent that answers questions based on your uploaded PDF or text files using local embeddings and Chroma DB.
 
+**For more details, refer this [blog post](https://subhashydv.github.io/blog/2025/09/agentic-ai-personal-rag-system/)**.
+
 ## 🚀 Features
 
 - Upload `.pdf` or `.txt` files
